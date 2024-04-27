@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      background-image: url('/templates/image.webp');
+      background-size: cover;
+      font-family: 'Arimo', sans-serif;
+    }
+    .login {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      margin: 100px auto;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .login h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-family: 'Pacifico', cursive;
+      color: #333;
+    }
+    .login input[type="text"] {
+      width: calc(100% - 40px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .login button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .login button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    /* Add some color to the form */
+    input[type="text"],
+    button[type="submit"] {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus,
+    input[type="text"]:hover,
+    button[type="submit"]:focus,
+    button[type="submit"]:hover {
+      border-color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h1>IRIS Flower Classification</h1>
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+      <input type="text" name="Sepal_Length" placeholder="Sepal Length" required="required" />
+      <input type="text" name="Sepal_Width" placeholder="Sepal Width" required="required" />
+      <input type="text" name="Petal_Length" placeholder="Petal Length" required="required" />
+      <input type="text" name="Petal_Width" placeholder="Petal Width" required="required" />
+      <button type="submit">Predict</button>
+    </form>
+    <br>
+    <br>
+    <!-- Prediction result will be displayed here -->
+    <p>
+    {% if prediction_text %}
+      Predicted Species: {{ prediction_text }}
+    {% endif %}
+    </p>
+  </div>
+</body>
+</html>
